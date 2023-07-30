@@ -1,7 +1,11 @@
-import { Typography } from "@mui/material"
+import { PageHeader } from "../../components"
 
 export const ProductsPage = () => {
     return (
-        <Typography variant="h1">Products Page</Typography>
+        <>
+            <PageHeader path={"/products/new"} textBtn={"Agregar producto"} title={"Gestion de productos"}/>
+            
+        
+        </>
     )
 }
