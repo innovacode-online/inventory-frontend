@@ -1,4 +1,4 @@
-import { FC, useState, useReducer } from 'react';
+import { FC, useState, useReducer, useEffect } from 'react';
 import  {AuthContext} from './AuthContext';
 import { AuthState, authReducer } from './authReducer';
 import inventoryDb from '../../api/inventoryDb';
@@ -22,8 +22,39 @@ export const AuthProvider:FC<PropsProvider> = ({ children }) => {
 
     const [state, dispatch] = useReducer(authReducer, AUTH_INITIAL_STATE);
 
+
+    const checkToken = async () => {
+        const token = localStorage.getItem('AUTH_TOKEN');
+
+        if( !token ){
+            dispatch({ type:'Logout' })
+            return;
+        }
+
+        try {
+            const { data } = await inventoryDb.get('/user');
+            dispatch({ type:'Login', payload:{ user: data, token } })
+
+        } catch (error) {
+            if( axios.isAxiosError(error) ){
+                setIsError({
+                    hasError: true,
+                    message: error.response?.data.message
+                })
+            }
+            console.log(isError);
+        } finally {
+            setIsLoading( false )
+        }
+
+    }
+
+    useEffect(() => {
+        checkToken();
+    }, [])
+    
+
     const authLogin = async (email: string, password: string ) => {
-        
         setIsLoading( true )
         
         try {
