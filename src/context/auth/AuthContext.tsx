@@ -8,6 +8,7 @@ interface ContextProps {
     isError: { hasError: boolean, message: string, };
 
     authLogin: (email: string, password: string) => Promise<void>;
+    authLogout: () => Promise<void>
 }
 
 export const AuthContext = createContext( {} as ContextProps );

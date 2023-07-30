@@ -3,6 +3,7 @@ import  {AuthContext} from './AuthContext';
 import { AuthState, authReducer } from './authReducer';
 import inventoryDb from '../../api/inventoryDb';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface PropsProvider{
     children : JSX.Element | JSX.Element[]
@@ -12,6 +13,8 @@ export const AuthProvider:FC<PropsProvider> = ({ children }) => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState({ hasError: false, message:'' });
+
+    const navigate = useNavigate();
 
 
     const AUTH_INITIAL_STATE: AuthState = {
@@ -85,6 +88,21 @@ export const AuthProvider:FC<PropsProvider> = ({ children }) => {
         }
     }
 
+    const authLogout = async () => {
+        // const token = localStorage.getItem('AUTH_TOKEN');
+        await inventoryDb.post('/auth/logout', null, {
+            headers: {
+                Authorization: `Bearer ${ localStorage.getItem('AUTH_TOKEN') }`
+            }
+        });
+        
+        localStorage.removeItem('AUTH_TOKEN');
+        dispatch({ type:'Logout' });
+        navigate('/auth/login');
+
+        
+    }
+
     return (
         <AuthContext.Provider value={{
             ...state,
@@ -92,7 +110,8 @@ export const AuthProvider:FC<PropsProvider> = ({ children }) => {
             isLoading,
 
             // METHODS
-            authLogin
+            authLogin,
+            authLogout
         }}>
             { children }
         </AuthContext.Provider>
