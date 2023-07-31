@@ -1,10 +1,12 @@
 import { Box } from "@mui/material"
 import { Outlet } from "react-router-dom"
 import { Navbar } from "../../components"
+import { Toast } from "../../components/ui/Toast"
 
 export const AdminLayout = () => {
     return (
         <Box sx={{ position:'relative', overflow:'hidden' }}>
+            <Toast/>
             {/* NAVBAR */}
             <Navbar/>
 

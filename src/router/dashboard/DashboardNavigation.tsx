@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { CategoriesPage, ProductsPage } from '../../pages';
+import { CategoriesPage, NewCategoryPage, ProductsPage } from '../../pages';
 import { useContext } from 'react';
 import { AuthContext } from '../../context';
 import { AdminLayout } from '../../layouts';
@@ -16,6 +16,7 @@ export const DashboardNavigation = () => {
                 <Route index element={ <ProductsPage/> }/>
                 <Route path='/products' element={ <ProductsPage/> }/>
                 <Route path='/categories' element={ <CategoriesPage/> }/>
+                <Route path='/categories/new' element={ <NewCategoryPage/> }/>
             </Route>
         </Routes>
     )

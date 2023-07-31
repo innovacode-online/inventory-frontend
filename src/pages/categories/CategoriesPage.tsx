@@ -1,7 +1,7 @@
-
-import { LoadingView, PageHeader } from "../../components"
 import { useContext } from 'react';
 import { CategoriesContext } from "../../context";
+
+import { CategoryCard, LoadingView, PageHeader } from "../../components"
 
 export const CategoriesPage = () => {
 
@@ -16,7 +16,7 @@ export const CategoriesPage = () => {
             <PageHeader path={"/categories/new"} textBtn={"Nueva categoria"} title={"Lista de categorias"}/>
             {
                 categories.map( category => (
-                    <h1 key={ category.id }>{ category.name }</h1>
+                    <CategoryCard key={ category.id } category={ category }/>
                 ))
             }
         </>
