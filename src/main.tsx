@@ -7,7 +7,7 @@ import { HashRouter } from 'react-router-dom'
 
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { lightTheme } from './themes/light-theme.ts'
-import { AuthProvider, CategoriesProvider, ToastProvider } from './context/index.ts'
+import { AuthProvider, CategoriesProvider, ToastProvider, ProductsProvider } from './context/index.ts'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -15,10 +15,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <ToastProvider>
         <AuthProvider>
           <CategoriesProvider>
-            <ThemeProvider theme={ lightTheme }>
-              <CssBaseline/>
-              <App />
-            </ThemeProvider>
+            <ProductsProvider>
+              <ThemeProvider theme={ lightTheme }>
+                <CssBaseline/>
+                <App />
+              </ThemeProvider>
+            </ProductsProvider>
           </CategoriesProvider>
         </AuthProvider>
       </ToastProvider>

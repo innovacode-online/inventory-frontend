@@ -10,3 +10,7 @@ export { PageHeader } from './ui/PageHeader'
 // CATEGORIES
 export { CategoryCard } from './categories/CategoryCard'
 export { NewCategoryForm } from './categories/NewCategoryForm'
+
+// PRODUCTS
+export { NewProductForm } from './products/NewProductForm'
+export { ProductCard } from './products/ProductCard'
