@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { CategoriesPage, EditProductPage, NewCategoryPage, NewProductPage, ProductsPage } from '../../pages';
+import { CategoriesPage, EditProductPage, NewCategoryPage, NewProductPage, ProductsPage, SalesPage } from '../../pages';
 import { useContext } from 'react';
 import { AuthContext } from '../../context';
 import { AdminLayout } from '../../layouts';
@@ -24,6 +24,8 @@ export const DashboardNavigation = () => {
                 <Route path='/categories/new' element={ <NewCategoryPage/> }/>
                 
                 {/* SALES */}
+                <Route path='/sales' element={ <SalesPage/> }/>
+
             </Route>
         </Routes>
     )

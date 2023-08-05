@@ -15,3 +15,6 @@ export { NewCategoryForm } from './categories/NewCategoryForm'
 export { EditProductForm } from './products/EditProductForm'
 export { NewProductForm } from './products/NewProductForm'
 export { ProductCard } from './products/ProductCard'
+
+// SALES
+export { SaleCard } from './sale/SaleCard'
