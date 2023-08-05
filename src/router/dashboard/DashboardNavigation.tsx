@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { CategoriesPage, NewCategoryPage, NewProductPage, ProductsPage } from '../../pages';
+import { CategoriesPage, EditProductPage, NewCategoryPage, NewProductPage, ProductsPage } from '../../pages';
 import { useContext } from 'react';
 import { AuthContext } from '../../context';
 import { AdminLayout } from '../../layouts';
@@ -13,13 +13,17 @@ export const DashboardNavigation = () => {
     ? (
         <Routes>
             <Route element={ <AdminLayout/> }>
+                {/* PRODUCTS */}
                 <Route index element={ <ProductsPage/> }/>
                 <Route path='/products' element={ <ProductsPage/> }/>
                 <Route path='/products/new' element={ <NewProductPage/> }/>
+                <Route path='/products/edit/:slug' element={ <EditProductPage/> }/>
 
+                {/* CATEGORIES */}
                 <Route path='/categories' element={ <CategoriesPage/> }/>
                 <Route path='/categories/new' element={ <NewCategoryPage/> }/>
                 
+                {/* SALES */}
             </Route>
         </Routes>
     )

@@ -1,24 +1,31 @@
+import { FC } from 'react'
 import { useContext, useState, ChangeEvent, FormEvent } from 'react';
 
+import { Product } from '../../interfaces/product';
 import { CategoriesContext, ProductsContext } from "../../context";
 import { Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material"
 
-export const NewProductForm = () => {
-    
+
+
+interface Props{
+    product: Product;
+}
+
+export const EditProductForm: FC<Props> = ({ product }) => {
     const { categories } = useContext(CategoriesContext);
-    const { createNewProduct } = useContext(ProductsContext);
-
-
-    const [newProduct, setNewProduct] = useState({
-        name:'',
-        description:'',
-        stock: 0,
-        category_id: '1',
-        price: '',
-    });
+    const { editProduct } = useContext(ProductsContext);
+    
     const [image, setImage] = useState<any>(null);
 
-    const handleForm = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<string>) => {
+    const [newProduct, setNewProduct] = useState({
+        name: product.name,
+        description: product.description,
+        stock: product.stock,
+        category_id: 1,
+        price: product.price,
+    });
+
+    const handleForm = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<number>) => {
         setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
     }
 
@@ -30,12 +37,12 @@ export const NewProductForm = () => {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
-        createNewProduct(image, newProduct);
+        editProduct(product.id, image, newProduct);
 
     }
 
 
-    return (
+    return (  
         <Grid
             container
             spacing={ 5 }
@@ -72,6 +79,8 @@ export const NewProductForm = () => {
                     type="text"
                     name="name"
                     onChange={ e => handleForm(e) }
+                    value={ newProduct.name }
+                    
                 />
                 <TextField
                     label="Agrega una descripción"
@@ -79,6 +88,7 @@ export const NewProductForm = () => {
                     name="description"
                     multiline
                     rows={4}
+                    value={ newProduct.description }
                     onChange={ e => handleForm(e) }
 
                 />
@@ -86,6 +96,7 @@ export const NewProductForm = () => {
                     label="Stock disponible"
                     type="number"
                     name="stock"
+                    value={ newProduct.stock }
                     onChange={ e => handleForm(e) }
 
                 />
@@ -93,6 +104,7 @@ export const NewProductForm = () => {
                     label="Precio del producto"
                     type="number"
                     name="price"
+                    value={ newProduct.price }
                     onChange={ e => handleForm(e) }
 
                 />
@@ -120,7 +132,7 @@ export const NewProductForm = () => {
                     sx={{ mt:3, width:'100%' }} 
                     onClick={handleSubmit}
                 >
-                    Crear producto
+                    Actualizar producto
                 </Button>
             </Grid>
         </Grid>

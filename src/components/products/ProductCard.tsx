@@ -1,14 +1,22 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ProductsContext } from '../../context';
 
-import { Card, Grid, Box, Typography, IconButton } from '@mui/material';
 import { Product } from '../../interfaces/product';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
+import { Card, Grid, Box, Typography, IconButton } from '@mui/material';
 
 interface Props{
     product: Product;
 }
 
 export const ProductCard: FC<Props> = ({ product }) => {
+
+    const {deleteProductById} = useContext(ProductsContext);
+
+    const navigate = useNavigate()
+
+
     return (
         <Card sx={{ mb:3, padding:'2rem' }}>
             <Grid container>
@@ -46,10 +54,15 @@ export const ProductCard: FC<Props> = ({ product }) => {
                 <Grid item xs={ 12 } sm={ 3 } md={ 2 }>
                     <Typography color='info.contrastText'>Acciones:</Typography>
                     <Box>
-                        <IconButton color='secondary'>
+                        <IconButton 
+                            onClick={() => navigate(`/products/edit/${ product.slug }`)}
+                            color='secondary'
+                        >
                             <AiOutlineEdit/>
                         </IconButton>
-                        <IconButton>
+                        <IconButton
+                            onClick={() => deleteProductById(product.id)}
+                        >
                             <AiOutlineDelete/>
                         </IconButton>
                     </Box>

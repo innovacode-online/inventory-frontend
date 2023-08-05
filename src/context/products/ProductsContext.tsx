@@ -3,6 +3,7 @@ import { Product } from '../../interfaces/product';
 
 interface ContextProps {
     products: Product[];
+    product: Product;
     isLoading: boolean;
 
 
@@ -12,6 +13,16 @@ interface ContextProps {
         stock: number;
         category_id: string;
         price: string;
+    }) => Promise<void>;
+    
+    deleteProductById: (id: number) => Promise<void>;
+    getProductBySlug: (slug: string) => Promise<void>;
+    editProduct: (image: any, id: number, product: {
+        name: string;
+        description: string;
+        stock: number;
+        category_id: number;
+        price: number;
     }) => Promise<void>
 
 }

@@ -12,5 +12,6 @@ export { CategoryCard } from './categories/CategoryCard'
 export { NewCategoryForm } from './categories/NewCategoryForm'
 
 // PRODUCTS
+export { EditProductForm } from './products/EditProductForm'
 export { NewProductForm } from './products/NewProductForm'
 export { ProductCard } from './products/ProductCard'
