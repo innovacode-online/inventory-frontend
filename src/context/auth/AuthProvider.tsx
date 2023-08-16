@@ -45,7 +45,7 @@ export const AuthProvider:FC<PropsProvider> = ({ children }) => {
                     message: error.response?.data.message
                 })
             }
-            console.log(isError);
+            dispatch({ type:'Logout' })
         } finally {
             setIsLoading( false )
         }

@@ -10,3 +10,4 @@ export { NewCategoryPage } from './categories/NewCategoryPage';
 
 
 export { SalesPage } from './sales/SalesPage';
+export { NewSalePage } from './sales/NewSalePage';

@@ -13,17 +13,18 @@ export const SaleCard:FC<Props> = ({ sale }) => {
         <Card sx={{ mb: 3, padding:'2rem' }}>
             <Grid container spacing={ 3 }>
                 <Grid item xs={ 12 } md={ 3 }>
-                    <Typography color='info.contrastText'>Venta: #200</Typography>
-                    <Typography>{ sale.id }</Typography>
+                    <Typography color='info.contrastText'>Venta: </Typography>
+                    <Typography>#CO-AG-{sale.id}</Typography>
                 </Grid>
                 <Grid item xs={ 12 } md={ 3 }>
                     <Typography color='info.contrastText'>Cantidad productos:</Typography>
                     <Typography>{ sale.details.length }</Typography>
                 </Grid>
-                {/* <Grid item xs={ 12 } md={ 3 }>
-                    <Typography color='info.contrastText'>Fecha de creacion:</Typography>
-                    <Typography>{ formatDate( category.created_at ) }</Typography>
-                </Grid> */}
+                <Grid item xs={ 12 } md={ 3 }>
+                    <Typography color='info.contrastText'>Total venta:</Typography>
+                    <Typography>{ sale.total }Bs</Typography>
+                    {/* <Typography>{ formatDate( category.created_at ) }</Typography> */}
+                </Grid>
                 <Grid item xs={ 12 } md={ 3 }>
                     <Typography color='info.contrastText'>Acciones:</Typography>
                     <Box>
